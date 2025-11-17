@@ -71,7 +71,7 @@ training:
   frozen_layers: None  #(0:-1)            # Optional, use if you want to freeze some layers (by default all layers are trainable)
   dropout: 0.3                     # Optional, use it if you want a dropout layer to be included in the model
   batch_size: 64
-  epochs: 1000
+  epochs: 30
   optimizer:
     Adam:
       learning_rate: 0.001

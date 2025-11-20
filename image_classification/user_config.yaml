@@ -22,7 +22,7 @@ dataset:
   seed: 127
 
 preprocessing:
-  rescaling: { scale: 1/127.5, offset: -1 }
+  rescaling: { scale: 1/255, offset: 0 }
   resizing:
     interpolation: nearest
     aspect_ratio: fit
@@ -59,13 +59,13 @@ training:
     name: squeezenet # ⬅️ Memory-efficient model
     version: v1.1
     # alpha and pretrained_weights REMOVED for cleanup.
-    input_shape: (96, 96, 3) # ⬅️ Crucial for memory reduction
+    input_shape: (64, 64, 3) # ⬅️ Crucial for memory reduction
     pretrained_model_path:
   resume_training_from:
   frozen_layers: None
   dropout: 0.3
   batch_size: 64
-  epochs: 60 # ⬅️ Increased for better convergence with EarlyStopping
+  epochs: 40 # ⬅️ Increased for better convergence with EarlyStopping
   optimizer:
     Adam:
       learning_rate: 0.001
@@ -85,8 +85,8 @@ training:
 quantization:
   quantizer: TFlite_converter
   quantization_type: PTQ
-  quantization_input_type: uint8
-  quantization_output_type: float
+  quantization_input_type: int8
+  quantization_output_type: int8
   granularity: per_channel
   optimize: False
   export_dir: quantized_models
@@ -106,7 +106,7 @@ benchmarking:
   board: STM32F446RE # ⬅️ TARGET BOARD FIXED
 
 deployment:
-  c_project_path: ../application_code/image_classification/STM32N6 # Assuming this path is relative
+  c_project_path: ../application_code/image_classification/STM32F4_NUCLEO_F446RE #Assuming this path is relative
   IDE: GCC
   verbosity: 1
   hardware_setup:

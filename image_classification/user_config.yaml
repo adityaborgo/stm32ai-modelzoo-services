@@ -65,7 +65,7 @@ training:
   frozen_layers: None
   dropout: 0.3
   batch_size: 64
-  epochs: 100 # ⬅️ Increased for better convergence with EarlyStopping
+  epochs: 60 # ⬅️ Increased for better convergence with EarlyStopping
   optimizer:
     Adam:
       learning_rate: 0.001
